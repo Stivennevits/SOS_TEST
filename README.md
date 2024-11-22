@@ -13,6 +13,46 @@ O si lo prefiere, puede ingresar las siguientes credenciales:
 * password: root
 * datasource.url: jdbc:postgresql://localhost:5432/sos_assistance
 
+* BD DDL 
+
+
+create table orders
+(
+    id         serial
+        primary key,
+    created_at timestamp default CURRENT_TIMESTAMP not null,
+    updated_at timestamp,
+    status     varchar(20)                         not null
+        constraint orders_status_check
+            check ((status)::text = ANY
+                   ((ARRAY ['PENDING'::character varying, 'IN_PROCESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::text[]))
+);
+
+create table order_product_quantity
+(
+    order_id   integer not null
+        references orders
+            on delete cascade,
+    product_id integer not null
+        references product
+            on delete cascade,
+    quantity   integer not null
+        constraint order_product_quantity_quantity_check
+            check (quantity > 0),
+    primary key (order_id, product_id)
+);
+
+
+create table product
+(
+    id    serial
+        primary key,
+    name  varchar(255)   not null,
+    price numeric(10, 2) not null
+);
+
+
+
 * MODULO PRODUCTOS
 
 Inicialmente cree productos siguiendo el siguiente path: 
@@ -32,7 +72,20 @@ http://localhost:8080/api/sos-assistance/product/1
 
 * MODULO PEDIDOS
   
-Para crear pedidos
+Para crear pedidos debe llenar dos listas, una llamada productIds con los ids de cada producto y la otra quantities con la cantidad de productos a solicitar por pedido
+
+http://localhost:8080/api/sos-assistance/order
+{
+  "productIds": [1, 2],
+  "quantities": [22, 80]
+}
+![image](https://github.com/user-attachments/assets/efd233c0-b58d-46f2-9714-e90f193baaad)
+
+Manejo de errores 
+![image](https://github.com/user-attachments/assets/5df9809a-4cf3-43d8-ba39-f2922f5352f6)
+
+Si se ingresa un id de pedido errado, se hace rollback a toda la transacción
+![image](https://github.com/user-attachments/assets/f00fcd8a-4178-4df7-9344-5d3eed780c63)
 
 
 
