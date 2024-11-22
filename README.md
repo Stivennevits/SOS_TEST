@@ -115,9 +115,9 @@ Si se ingresa un id de pedido errado, se hace rollback a toda la transacción
 
 ### ACTUALIZAR PEDIDOS  
 
-Actualizar estado
+
 Use los siguientes estados:
-PENDING, IN_PROCESS o COMPLETED
+* PENDING, IN_PROCESS o COMPLETED
 
 ```http
  PUT  http://localhost:8080/api/sos-assistance/order/1?status=IN_PROCESS
