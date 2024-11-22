@@ -1,6 +1,10 @@
-TEST S.O.S ASISTENCIA
+# TEST S.O.S ASISTENCIA
 
-Proyecto generado con Java 17, springBoot 3.1.0, Gradle 8.11.1 y Postgresql 14.10 
+## Tecnologías usadas
+Proyecto generado con Java 17, springBoot 3.1.0, Gradle 8.11.1,  SonarLint  y Postgresql 14.10 
+
+## ARQUITECTURA DEL PROYECTO
+- Modular con principios SOLID
 
 Inicialmente descargue una imagen de docker con el siguiente comando:
 docker pull postgres:14.10
@@ -13,9 +17,10 @@ O si lo prefiere, puede ingresar las siguientes credenciales:
 * password: root
 * datasource.url: jdbc:postgresql://localhost:5432/sos_assistance
 
-* BD DDL 
+## Scripts de creación de tablas
 
-
+- Crear la tabla orders
+ ```sql 
 create table orders
 (
     id         serial
@@ -27,7 +32,10 @@ create table orders
             check ((status)::text = ANY
                    ((ARRAY ['PENDING'::character varying, 'IN_PROCESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::text[]))
 );
+```
 
+- Crear tabla order_product_quantity
+```sql
 create table order_product_quantity
 (
     order_id   integer not null
@@ -42,7 +50,10 @@ create table order_product_quantity
     primary key (order_id, product_id)
 );
 
+```
 
+- Crear tabla product
+```sql
 create table product
 (
     id    serial
@@ -50,10 +61,10 @@ create table product
     name  varchar(255)   not null,
     price numeric(10, 2) not null
 );
+```
 
 
-
-* MODULO PRODUCTOS
+##  MODULO PRODUCTOS
 
 Inicialmente cree productos siguiendo el siguiente path: 
 
@@ -70,7 +81,7 @@ Para actualizar el precio de los servicios ingrese a
 http://localhost:8080/api/sos-assistance/product/1
 ![image](https://github.com/user-attachments/assets/afcacc6d-0cb9-4c17-8387-32c4dbfc8baf)
 
-* MODULO PEDIDOS
+##  MODULO PEDIDOS
   
 Para crear pedidos debe llenar dos listas, una llamada productIds con los ids de cada producto y la otra quantities con la cantidad de productos a solicitar por pedido
 
