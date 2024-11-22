@@ -165,3 +165,11 @@ http://localhost:8080/api/sos-assistance/product/1
  GET http://localhost:8080/api/sos-assistance/product/1
 ```
 ![image](https://github.com/user-attachments/assets/2dfed66a-f17d-47ae-be9f-18caecaf4eff)
+
+
+##  PRUEBAS UNITARIAS
+![image](https://github.com/user-attachments/assets/3e560c20-b49d-4cec-83f0-b24a6c9525c4)
+
+![image](https://github.com/user-attachments/assets/18c3fcb9-504b-4c7a-afea-de37ca052d7e)
+
+
