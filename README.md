@@ -70,15 +70,24 @@ Inicialmente cree productos siguiendo el siguiente path:
 
 Tipo Post: http://localhost:8080/api/sos-assistance/product
 {"name": "pintura", "price": 140}
+```http
+ POST http://localhost:8080/api/sos-assistance/product
+```
 ![image](https://github.com/user-attachments/assets/a604a496-f618-4deb-a712-7ea8d540db73)
 
 
 también puede consultar los diferentes productos que haya creado 
 Tipo Get: http://localhost:8080/api/sos-assistance/product
+```http
+ GET http://localhost:8080/api/sos-assistance/product
+```
 ![image](https://github.com/user-attachments/assets/e1cb86ab-ae4b-4774-9701-22b54c855e54)
 
 Para actualizar el precio de los servicios ingrese a
 http://localhost:8080/api/sos-assistance/product/1
+```http
+ PUT http://localhost:8080/api/sos-assistance/product/1
+```
 ![image](https://github.com/user-attachments/assets/afcacc6d-0cb9-4c17-8387-32c4dbfc8baf)
 
 ##  MODULO PEDIDOS
@@ -97,6 +106,9 @@ Manejo de errores
 
 Si se ingresa un id de pedido errado, se hace rollback a toda la transacción
 ![image](https://github.com/user-attachments/assets/f00fcd8a-4178-4df7-9344-5d3eed780c63)
+
+Actualizar estado
+
 
 
 
