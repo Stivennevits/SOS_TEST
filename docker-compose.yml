@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  ecommerce-app:
+    build: .
+    container_name: ecommerce-app-container
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/sos_assistance
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db
+
+
+  db:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: sos_assistance
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+    driver: local

@@ -1,0 +1,7 @@
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+      855       1     855      28884  ?           4096 10:14:06 /usr/bin/mintty
+      810       1     810      29960  ?           4096 08:54:32 /usr/bin/mintty
+      877     856     877      12404  pty1        4096 10:14:13 /usr/bin/PS
+      878     856     877       1528  pty1        4096 10:14:13 /usr/bin/bash
+      856     855     856      29688  pty1        4096 10:14:06 /usr/bin/bash
+      811     810     811      21364  pty0        4096 08:54:32 /usr/bin/bash
